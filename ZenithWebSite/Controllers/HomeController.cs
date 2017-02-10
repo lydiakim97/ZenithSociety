@@ -16,11 +16,12 @@ namespace ZenithWebSite.Controllers
         public ActionResult Index()
         {
             DateTime today = DateTime.Today;
-            DateTime first = today.AddDays(-(int)today.DayOfWeek);
-            DateTime last = first.AddDays(7);
+            DateTime startOfWeek = today.AddDays(-(int)today.DayOfWeek);
+            startOfWeek = startOfWeek.AddDays(1.0);
+            DateTime endOfWeek = startOfWeek.AddDays(7);
 
             var activities = db.Activities.Include(a => a.Events)
-                                .Where(a => a.Events.Any(b => b.EventFrom >= first && b.EventFrom <= last && b.IsActive == true))
+                                .Where(a => a.Events.All(b => b.EventFrom >= startOfWeek && b.EventTo <= endOfWeek && b.IsActive == true))
                                 .Select(a => a);
             return View(activities.ToList());
         }

@@ -6,26 +6,37 @@
 }
 
 <div class="jumbotron">
-    <h1>Welcome to Zenith Society</h1>
-    <p class="lead">Stay up to date on upcoming events!</p>
+    <h1>Zenith Society</h1>
+    <p class="lead">These are the activities for the week:</p>
 </div>
 
-<table class="hometable" border="1" align="center">
-@{
-   DateTime prevDate = DateTime.MinValue;
-}
+<table class="table">
+    @{
+        DateTime prevDate = DateTime.MinValue;
+        List<KeyValuePair<Activity, Event>> list = new List<KeyValuePair<Activity, Event>>();
+    }
 
-@foreach (var item in Model)
-{
-    foreach (var element in item.Events)
+    @foreach (var item in Model)
     {
-        DateTime date = element.EventFrom.Date;
+        foreach (var element in item.Events)
+        {
+            list.Add(new KeyValuePair<Activity, Event>(item, element));
+        }
+    }
+
+    @{
+        List<KeyValuePair<Activity, Event>> SortedList = list.OrderBy(o => o.Value.EventFrom).ToList();
+    }
+
+    @foreach (var element in SortedList)
+    {
+        DateTime date = element.Value.EventFrom.Date;
         string prettyDate = date.ToLongDateString();
 
-        DateTime dt = DateTime.Parse(element.EventFrom.ToString());
+        DateTime dt = DateTime.Parse(element.Value.EventFrom.ToString());
         string timeStart = dt.ToString("hh:mm tt");
 
-        dt = DateTime.Parse(element.EventTo.ToString());
+        dt = DateTime.Parse(element.Value.EventTo.ToString());
         string timeEnd = dt.ToString("hh:mm tt");
 
         if (prevDate != date)
@@ -39,16 +50,14 @@
             </tr>
         }
 
-            <tr>
-                <td class="td-date" align="center">
-                    @timeStart  -
-                    @timeEnd
-                </td>
-                <td class="td-activity">
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @timeStart  -
+                @timeEnd
+            </td>
+            <td>
+                @element.Key.Description
+            </td>
+        </tr>
     }
-}
-
 </table>
