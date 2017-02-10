@@ -1,0 +1,54 @@
+﻿@using ZenithDataLib.Models
+@model IEnumerable<ZenithDataLib.Models.Activity>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to Zenith Society</h1>
+    <p class="lead">Stay up to date on upcoming events!</p>
+</div>
+
+<table class="hometable" border="1" align="center">
+@{
+   DateTime prevDate = DateTime.MinValue;
+}
+
+@foreach (var item in Model)
+{
+    foreach (var element in item.Events)
+    {
+        DateTime date = element.EventFrom.Date;
+        string prettyDate = date.ToLongDateString();
+
+        DateTime dt = DateTime.Parse(element.EventFrom.ToString());
+        string timeStart = dt.ToString("hh:mm tt");
+
+        dt = DateTime.Parse(element.EventTo.ToString());
+        string timeEnd = dt.ToString("hh:mm tt");
+
+        if (prevDate != date)
+        {
+            prevDate = date;
+
+            <tr>
+                <th colspan="2">
+                    @prettyDate
+                </th>
+            </tr>
+        }
+
+            <tr>
+                <td class="td-date" align="center">
+                    @timeStart  -
+                    @timeEnd
+                </td>
+                <td class="td-activity">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+            </tr>
+    }
+}
+
+</table>

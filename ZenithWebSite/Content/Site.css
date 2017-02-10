@@ -1,0 +1,159 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: rgba(217, 137, 137, 0.18);
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Changes the background color of the header*/
+.navbar {
+    background-color: #8b7d7b;
+}
+
+/* Changes the header title*/
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+/* Changes the header menu*/
+.navbar-inverse .navbar-nav > li > a {
+  color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #d8ee77;
+  background-color: transparent;
+}
+
+/* glyphicon in the header menu*/
+span.glyphicon-tree-deciduous {
+    color:#d8ee77;
+    font-size: 2em;
+    margin-top: 0.25em;
+    margin-right: 0.3em;
+}
+
+/* resize jumbotron on the main page */
+.jumbotron {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    background-color: rgba(218, 205, 205, 0.68);
+    max-height: 140px;
+}
+
+.jumbotron h1 {
+    font-size: 26px;
+    color: rgb(79, 55, 32);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.lead {
+    margin-top: 15px;
+    font-size: 16px;
+    color: rgba(79, 55, 32, 0.7);
+    text-align: center;
+}
+
+/* change color of the links */
+a {
+    color: #0257a0;
+}
+
+a:hover {
+    color: #d56b36;
+}
+
+/* table on the homepage */
+th {
+    text-align: center;
+    background-color: rgba(181, 200, 204, 0.8);
+    height: 35px;
+}
+
+td {
+    height: 34px;
+}
+
+table, th, td {
+    border: 2px solid black;
+}
+
+table.hometable {
+    width: 80%;
+    height: 200px;
+}
+
+table.hometable th {
+    background-color: rgba(181, 200, 204, 0.8);
+}
+
+/* table on the events page */
+table.eventtable {
+    width: 100%;
+}
+
+table.eventtable td {
+    text-align: center;
+}
+
+td.td-date {
+    padding-right: 150px; 
+    text-align:right
+}
+
+td.td-activity {
+    padding-left: 40px
+}
+
+h2.title {
+    margin-top: 30px;
+    text-align: center;
+    color:rgb(79, 55, 32);
+}
+
+/* error message for validations */
+.validation-summary-errors ul {
+    list-style: none;
+    margin-left:160px;
+}
+
+select#ActivityId {
+    width: 280px;
+    height: 34px;
+    border-radius: 4px;
+}
+
+/* date picker */
+.input-group-addon {
+    border-style: none;
+    background-color: rgba(217, 137, 137, 0);
+}
+
+.input-group {
+    padding-right: 625px;
+}
+
+.control-label {
+    width: 130px;
+}

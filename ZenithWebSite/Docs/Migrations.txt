@@ -1,0 +1,8 @@
+﻿==============================  ApplicationDbContext =============================
+
+Enable-Migrations -ContextTypeName ApplicationDbContext -MigrationsDirectory Migrations\Identity
+
+add-migration -ConfigurationTypeName ZenithWebSite.Migrations.Identity.Configuration "FirstMigration"
+
+update-database -ConfigurationTypeName ZenithWebSite.Migrations.Identity.Configuration
+
