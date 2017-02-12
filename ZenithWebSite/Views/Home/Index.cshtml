@@ -10,6 +10,13 @@
     <p class="lead">These are the activities for the week:</p>
 </div>
 
+@{
+    DateTime today = DateTime.Today;
+    DateTime startOfWeek = today.AddDays(-(int)today.DayOfWeek);
+    startOfWeek = startOfWeek.AddDays(1.0);
+    DateTime endOfWeek = startOfWeek.AddDays(7);
+}
+
 <table class="table">
     @{
         DateTime prevDate = DateTime.MinValue;
@@ -25,7 +32,7 @@
     }
 
     @{
-        List<KeyValuePair<Activity, Event>> SortedList = list.OrderBy(o => o.Value.EventFrom).ToList();
+        List<KeyValuePair<Activity, Event>> SortedList = list.OrderBy(o => o.Value.EventFrom).Where(b => b.Value.IsActive == true && b.Value.EventFrom >= startOfWeek && b.Value.EventTo <= endOfWeek).ToList();
     }
 
     @foreach (var element in SortedList)
